@@ -18,6 +18,7 @@ class SizeConfig {
   late double remainingWidth;
   late int x, y;
 
+  // ignore: non_constant_identifier_names
   late double font_size;
   late double textScale;
 

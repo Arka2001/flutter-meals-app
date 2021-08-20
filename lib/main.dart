@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:meals_app/utils/sizeConfig.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,9 +32,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final SizeConfig sc = SizeConfig();
+    sc.init(context);
+
+    final _textScale = sc.textScale;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Delicious Meals"),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.dehaze_rounded,
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          "Delicious Meals",
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 20 * _textScale,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
       ),
     );
   }
