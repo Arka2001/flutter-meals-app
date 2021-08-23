@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals_app/utils/dummy_data.dart';
-import 'package:meals_app/widgets/meal_tile_widget.dart';
+import '../utils/dummy_data.dart';
+import '../widgets/meal_tile_widget.dart';
 import '../utils/sizeConfig.dart';
 
 class CategoryMealScreen extends StatelessWidget {
@@ -39,6 +39,7 @@ class CategoryMealScreen extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (context, index) {
           return MealTile(
+            id: categoryMeals[index].id,
             imageUrl: categoryMeals[index].imageUrl,
             title: categoryMeals[index].title,
             duration: categoryMeals[index].duration,
