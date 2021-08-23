@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meals_app/utils/dummy_data.dart';
+import 'package:meals_app/widgets/meal_tile_widget.dart';
 import '../utils/sizeConfig.dart';
 
 class CategoryMealScreen extends StatelessWidget {
@@ -18,6 +20,9 @@ class CategoryMealScreen extends StatelessWidget {
 
     final title = widgetArgs['title'];
     final id = widgetArgs['id'];
+    final categoryMeals = DUMMY_MEALS.where((meal) {
+      return meal.categories.contains(id);
+    }).toList();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -31,8 +36,17 @@ class CategoryMealScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Text("The recipes for $title food !"),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return MealTile(
+            imageUrl: categoryMeals[index].imageUrl,
+            title: categoryMeals[index].title,
+            duration: categoryMeals[index].duration,
+            affordability: categoryMeals[index].affordability,
+            complexity: categoryMeals[index].complexity,
+          );
+        },
+        itemCount: categoryMeals.length,
       ),
     );
   }
