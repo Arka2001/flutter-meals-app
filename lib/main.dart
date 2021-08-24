@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals App',
       theme: ThemeData(
         primaryColor: Colors.pink.shade600,
+        accentColor: Colors.amberAccent,
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: categoriesPage,
