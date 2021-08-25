@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/routes/app_routes.dart';
+import 'package:meals_app/utils/sizeConfig.dart';
 
 class MealTile extends StatelessWidget {
   final String id;
@@ -47,6 +48,8 @@ class MealTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textScale = MediaQuery.of(context).textScaleFactor;
+    final sc = new SizeConfig();
+    sc.init(context);
     final _complexityText = complexityText;
     final _affordabilityText = affordabilityText;
     return InkWell(
@@ -56,7 +59,7 @@ class MealTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         elevation: 4,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(sc.screenWidth * 0.01),
         child: Column(
           children: <Widget>[
             Stack(
@@ -67,15 +70,19 @@ class MealTile extends StatelessWidget {
                     topRight: Radius.circular(15),
                   ),
                   child: Image.network(imageUrl,
-                      height: 250, width: double.infinity, fit: BoxFit.cover),
+                      height: sc.screenHeight * 0.25,
+                      width: double.infinity,
+                      fit: BoxFit.cover),
                 ),
                 Positioned(
-                  bottom: 20,
-                  right: 10,
+                  bottom: sc.screenHeight * 0.02,
+                  right: sc.screenHeight * 0.01,
                   child: Container(
-                    width: 300,
+                    width: sc.screenHeight * 0.3,
                     color: Colors.black54,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                    padding: EdgeInsets.symmetric(
+                        vertical: sc.screenHeight * 0.005,
+                        horizontal: sc.screenHeight * 0.02),
                     child: Text(
                       title,
                       style: GoogleFonts.poppins(
@@ -92,7 +99,7 @@ class MealTile extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.all(sc.screenWidth * 0.05),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[

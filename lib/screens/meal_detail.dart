@@ -8,7 +8,7 @@ class MealDetailScreen extends StatelessWidget {
 
   Container buildSectionTitle(SizeConfig sc, String title) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: sc.screenWidth * 0.01),
       child: Text(
         "$title",
         style: GoogleFonts.poppins(
@@ -21,17 +21,17 @@ class MealDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget buildContainer(Widget child) {
+  Widget buildContainer(SizeConfig sc, Widget child) {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(15),
         ),
-        margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
-        height: 200,
-        width: 300,
+        margin: EdgeInsets.all(sc.screenWidth * 0.05),
+        padding: EdgeInsets.all(sc.screenWidth * 0.02),
+        height: sc.screenHeight * 0.2,
+        width: sc.screenWidth * 0.5,
         child: child);
   }
 
@@ -60,19 +60,21 @@ class MealDetailScreen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              height: 300,
+              height: sc.screenHeight * 0.3,
               width: double.infinity,
               child: Image.network(meal.imageUrl, fit: BoxFit.cover),
             ),
             buildSectionTitle(sc, "Ingredients"),
             buildContainer(
+              sc,
               ListView.builder(
                 itemBuilder: (context, index) {
                   return Card(
                     color: Theme.of(context).accentColor,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5.0, horizontal: 10),
+                      padding: EdgeInsets.symmetric(
+                          vertical: sc.screenHeight * 0.005,
+                          horizontal: sc.screenWidth * 0.01),
                       child: Text(
                         "${index + 1}. ${meal.ingredients[index]}",
                         style: GoogleFonts.poppins(),
@@ -85,6 +87,7 @@ class MealDetailScreen extends StatelessWidget {
             ),
             buildSectionTitle(sc, "Steps"),
             buildContainer(
+              sc,
               ListView.builder(
                 itemBuilder: (context, index) {
                   return Column(
@@ -99,7 +102,10 @@ class MealDetailScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        title: Text(meal.steps[index]),
+                        title: Text(
+                          meal.steps[index],
+                          style: GoogleFonts.poppins(),
+                        ),
                       ),
                       Divider(),
                     ],
