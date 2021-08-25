@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.amberAccent,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: categoriesPage,
+      initialRoute: homePage,
       routes: route,
     );
   }
