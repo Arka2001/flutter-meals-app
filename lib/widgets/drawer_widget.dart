@@ -54,7 +54,7 @@ class DrawerWidget extends StatelessWidget {
           buildListTile(sc, "Meals", Icons.restaurant,
               () => Navigator.of(context).pushReplacementNamed(homePage)),
           buildListTile(sc, "Filters", Icons.settings,
-              () => Navigator.of(context).pushNamed(filtersPage)),
+              () => Navigator.of(context).pushReplacementNamed(filtersPage)),
         ],
       ),
     );
