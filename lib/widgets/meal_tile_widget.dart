@@ -42,7 +42,9 @@ class MealTile extends StatelessWidget {
   }
 
   void _selectMeal(BuildContext context) {
-    Navigator.pushNamed(context, mealDetailsPage, arguments: id);
+    Navigator.pushNamed(context, mealDetailsPage, arguments: id).then((result) {
+      print(result);
+    });
   }
 
   @override
