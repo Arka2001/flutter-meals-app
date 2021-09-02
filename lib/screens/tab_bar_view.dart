@@ -1,44 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/favorites_screen.dart';
 import 'package:meals_app/widgets/drawer_widget.dart';
 import 'categories_screen.dart';
 
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
+  static String routeName = '/';
+
+  final List<Meal> favoriteMeals;
+  TabsScreen(this.favoriteMeals);
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  final List<Map<String, Widget>> _pages = [
-    {
-      'page': CategoriesScreen(),
-      'title': Text(
-        'Categories',
-        style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+  late List<Map<String, Widget>> _pages;
+
+  @override
+  void initState() {
+    _pages = [
+      {
+        'page': CategoriesScreen(),
+        'title': Text(
+          'Categories',
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-      )
-    },
-    {
-      'page': FavoritesScreen(),
-      'title': Text(
-        'Your favorites',
-        style: GoogleFonts.poppins(
-          textStyle: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+        )
+      },
+      {
+        'page': FavoritesScreen(widget.favoriteMeals),
+        'title': Text(
+          'Your favorites',
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-      )
-    },
-  ];
+        )
+      },
+    ];
+    super.initState();
+  }
 
   int _selectedPageIndex = 0;
 

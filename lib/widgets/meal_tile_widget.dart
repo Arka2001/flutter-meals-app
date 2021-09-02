@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals_app/models/meal.dart';
-import 'package:meals_app/routes/app_routes.dart';
+import 'package:meals_app/screens/meal_detail.dart';
 import 'package:meals_app/utils/sizeConfig.dart';
 
 class MealTile extends StatelessWidget {
@@ -42,7 +42,8 @@ class MealTile extends StatelessWidget {
   }
 
   void _selectMeal(BuildContext context) {
-    Navigator.pushNamed(context, mealDetailsPage, arguments: id).then((result) {
+    Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: id)
+        .then((result) {
       print(result);
     });
   }

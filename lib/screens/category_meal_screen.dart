@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../utils/dummy_data.dart';
+import 'package:meals_app/models/meal.dart';
 import '../widgets/meal_tile_widget.dart';
 import '../utils/sizeConfig.dart';
 
-class CategoryMealScreen extends StatelessWidget {
+class CategoryMealScreen extends StatefulWidget {
   // final String id;
   // final String title;
 
   // CategoryMealScreen(this.id, this.title);
+  static String routeName = '/category-meals';
 
+  final List<Meal> availableMeals;
+  CategoryMealScreen(this.availableMeals);
+
+  @override
+  _CategoryMealScreenState createState() => _CategoryMealScreenState();
+}
+
+class _CategoryMealScreenState extends State<CategoryMealScreen> {
   @override
   Widget build(BuildContext context) {
     final sc = SizeConfig();
@@ -20,7 +29,7 @@ class CategoryMealScreen extends StatelessWidget {
 
     final title = widgetArgs['title'];
     final id = widgetArgs['id'];
-    final categoryMeals = DUMMY_MEALS.where((meal) {
+    final categoryMeals = widget.availableMeals.where((meal) {
       return meal.categories.contains(id);
     }).toList();
     return Scaffold(

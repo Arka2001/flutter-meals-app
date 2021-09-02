@@ -3,9 +3,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meals_app/utils/dummy_data.dart';
 import 'package:meals_app/utils/sizeConfig.dart';
 
-class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key}) : super(key: key);
+class MealDetailScreen extends StatefulWidget {
+  final Function toggleFavorite;
+  final Function isMealFavorite;
+  MealDetailScreen(this.toggleFavorite, this.isMealFavorite);
 
+  static String routeName = '/meal-details';
+
+  @override
+  _MealDetailScreenState createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
   Container buildSectionTitle(SizeConfig sc, String title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: sc.screenWidth * 0.01),
@@ -57,10 +66,16 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          widget.toggleFavorite(mealId);
         },
-        child: Icon(Icons.delete),
+        child: Icon(
+          widget.isMealFavorite(mealId)
+              ? Icons.favorite
+              : Icons.favorite_border,
+          color: Colors.white,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

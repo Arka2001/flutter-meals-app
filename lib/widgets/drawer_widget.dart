@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals_app/routes/app_routes.dart';
+import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/filters_screen.dart';
+import 'package:meals_app/screens/tab_bar_view.dart';
 import 'package:meals_app/utils/sizeConfig.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -51,10 +53,18 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: sc.screenHeight * 0.012),
-          buildListTile(sc, "Meals", Icons.restaurant,
-              () => Navigator.of(context).pushReplacementNamed(homePage)),
-          buildListTile(sc, "Filters", Icons.settings,
-              () => Navigator.of(context).pushReplacementNamed(filtersPage)),
+          buildListTile(
+              sc,
+              "Meals",
+              Icons.restaurant,
+              () => Navigator.of(context)
+                  .pushReplacementNamed(TabsScreen.routeName)),
+          buildListTile(
+              sc,
+              "Filters",
+              Icons.settings,
+              () => Navigator.of(context)
+                  .pushReplacementNamed(FiltersScreen.routeName)),
         ],
       ),
     );
